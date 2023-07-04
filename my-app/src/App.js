@@ -1,25 +1,34 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from 'react';
+import LoginPage from './components/LoginPage';
 
-function App() {
+const App = () => {
+  const [isLoggedIn, setLoggedIn] = useState(false);
+
+  const handleLogin = () => {
+    // Simula a autenticação bem-sucedida
+    setLoggedIn(true);
+  };
+
+  const handleLogout = () => {
+    // Simula o logout
+    setLoggedIn(false);
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      {isLoggedIn ? (
+        <div>
+          <h2>Bem-vindo!</h2>
+          <button onClick={handleLogout}>Logout</button>
+        </div>
+      ) : (
+        <div>
+          <LoginPage onLogin={handleLogin} />
+        </div>
+      )}
     </div>
   );
-}
+};
 
 export default App;
+
